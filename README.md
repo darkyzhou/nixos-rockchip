@@ -74,6 +74,7 @@ Applies device tree overlay to enable SATA port on Quartz64A.
 | [ROC PC RK3399][]    | ROCPCRK3399    | Untested        |
 | [Pinebook Pro][]     | PinebookPro    | Untested        |
 | Orange Pi CM4        | OrangePiCM4    | Untested        |
+| Orange Pi 3B         | OrangePi3B     | Tested & Works  |
 | Radxa CM3/CM3 I/O    | RadxaCM3IO     | Untested        |
 | [Radxa Rock 4][]     | RadxaRock4     | Tested & Works  |
 | [Radxa Rock4 SE][]   | RadxaRock4SE   | Tested & Works  |

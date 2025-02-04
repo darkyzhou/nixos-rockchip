@@ -101,6 +101,11 @@
           kernel = (kernel system).linux_6_6_rockchip;
           extraModules = [ ];
         };
+        "OrangePi3B" = {
+          uBoot = (uBoot system).uBootOrangePi3B;
+          kernel = (kernel system).linux_6_12_rockchip;
+          extraModules = [ noZFS ];
+        };
         "RadxaCM3IO" = {
           uBoot = (uBoot system).uBootRadxaCM3IO;
           kernel = (kernel system).linux_6_12_rockchip;
@@ -168,6 +173,7 @@
         uBootSoQuartzBlade = (uBoot system).uBootSoQuartzBlade;
 
         uBootOrangePiCM4 = (uBoot system).uBootOrangePiCM4;
+        uBootOrangePi3B = (uBoot system).uBootOrangePi3B;
 
         uBootRadxaCM3IO = (uBoot system).uBootRadxaCM3IO;
         uBootRadxaRock4 = (uBoot system).uBootRadxaRock4;

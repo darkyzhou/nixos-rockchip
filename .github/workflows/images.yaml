@@ -30,6 +30,7 @@ jobs:
         - uBootSoQuartzCM4IO
         - uBootSoQuartzBlade
         - uBootOrangePiCM4
+        - uBootOrangePi3B
         - uBootRadxaCM3IO
         - uBootRadxaRock4
         - uBootRadxaRock4SE
@@ -132,6 +133,7 @@ jobs:
         - PinebookPro
         - PineTab2
         - OrangePiCM4
+        - OrangePi3B
         - RadxaCM3IO
         - RadxaRock4
         - RadxaRock4SE
