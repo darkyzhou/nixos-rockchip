@@ -8,7 +8,8 @@ let
     COMMON_CLK_ROCKCHIP = yes;
     DRM_ROCKCHIP = yes;
     GPIO_ROCKCHIP = yes;
-    MFD_RK808 = yes;
+    MFD_RK8XX = yes;
+    MFD_RK8XX_I2C = yes;
     MMC_DW = yes;
     MMC_DW_ROCKCHIP = yes;
     MMC_SDHCI_OF_DWCMSHC = yes;
