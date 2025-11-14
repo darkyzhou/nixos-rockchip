@@ -27,10 +27,10 @@
           config.allowUnfree = true; # for arm-trusted-firmware
         };
 
-      uBoot = system: (pkgsUnstable system).callPackage ./pkgs/uboot-rockchip.nix { };
-      kernel = system: (pkgsUnstable system).callPackage ./pkgs/linux-rockchip.nix { };
-      bes2600Firmware = system: (pkgsUnstable system).callPackage ./pkgs/bes2600-firmware.nix { };
-      armbian-firmware = system: (pkgsUnstable system).callPackage ./pkgs/armbian-firmware.nix { };
+      uBoot = system: (pkgs system).callPackage ./pkgs/uboot-rockchip.nix { };
+      kernel = system: (pkgs system).callPackage ./pkgs/linux-rockchip.nix { };
+      bes2600Firmware = system: (pkgs system).callPackage ./pkgs/bes2600-firmware.nix { };
+      armbian-firmware = system: (pkgs system).callPackage ./pkgs/armbian-firmware.nix { };
       brcm43752pcieFirmware = system: (armbian-firmware system).brcm-43752-pcie;
 
       # ZFS is broken on kernel from unstable.
@@ -110,6 +110,11 @@
         };
         "OrangePiCM4" = {
           uBoot = (uBoot system).uBootOrangePiCM4;
+          kernel = (kernel system).linux_6_12_rockchip;
+          extraModules = [ ];
+        };
+        "OrangePi3B" = {
+          uBoot = (uBoot system).uBootOrangePi3B;
           kernel = (kernel system).linux_6_12_rockchip;
           extraModules = [ ];
         };
@@ -200,6 +205,7 @@
         uBootSoQuartzBlade = (uBoot system).uBootSoQuartzBlade;
 
         uBootOrangePiCM4 = (uBoot system).uBootOrangePiCM4;
+        uBootOrangePi3B = (uBoot system).uBootOrangePi3B;
 
         uBootRadxaCM3IO = (uBoot system).uBootRadxaCM3IO;
         uBootRadxaRock4 = (uBoot system).uBootRadxaRock4;
