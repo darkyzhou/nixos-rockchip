@@ -11,14 +11,6 @@
     { self, ... }@inputs:
     let
       # Use cross-compilation for uBoot and Kernel.
-      pkgs =
-        system:
-        import inputs.nixpkgsStable {
-          inherit system;
-          crossSystem.system = "aarch64-linux";
-          config.allowUnfree = true; # for arm-trusted-firmware
-        };
-
       pkgsUnstable =
         system:
         import inputs.nixpkgsUnstable {
@@ -31,7 +23,7 @@
         system:
         with (pkgsUnstable system);
         lib.makeScope newScope (self-scope: {
-          pkgs-stable = pkgs system;
+          pkgs-stable = pkgsUnstable system;
           uBoot = self-scope.callPackage ./pkgs/uboot-rockchip.nix { };
           kernel = self-scope.callPackage ./pkgs/linux-rockchip.nix { };
           bes2600Firmware = self-scope.callPackage ./pkgs/bes2600-firmware.nix { };
@@ -128,6 +120,14 @@
             kernel = kernel.linux_6_17_rockchip_stable;
             extraModules = [ noZFS ];
           };
+          "OrangePi3B" = {
+            uBoot = uBoot.uBootOrangePi3B;
+            kernel = kernel.linux_latest_rockchip_unstable;
+            extraModules = [
+              noZFS
+              { boot.initrd.allowMissingModules = true; }
+            ];
+          };
           "OrangePi5B" = {
             uBoot = uBoot.uBootOrangePi5B;
             kernel = kernel.linux_6_17_orangepi5b_stable;
@@ -168,7 +168,7 @@
         system:
         builtins.mapAttrs (
           name: value:
-          inputs.nixpkgsStable.lib.nixosSystem {
+          inputs.nixpkgsUnstable.lib.nixosSystem {
             system = "aarch64-linux";
 
             modules = [
@@ -225,6 +225,7 @@
           uBootSoQuartzBlade = uBoot.uBootSoQuartzBlade;
 
           uBootOrangePiCM4 = uBoot.uBootOrangePiCM4;
+          uBootOrangePi3B = uBoot.uBootOrangePi3B;
           uBootOrangePi5B = uBoot.uBootOrangePi5B;
 
           uBootRadxaCM3IO = uBoot.uBootRadxaCM3IO;
@@ -237,7 +238,7 @@
           bes2600 = bes2600Firmware;
           brcm43752 = brcm43752pcieFirmware;
         };
-        formatter = (import inputs.nixpkgsStable { inherit system; }).nixfmt-tree;
+        formatter = (import inputs.nixpkgsUnstable { inherit system; }).nixfmt-tree;
       }
     );
 }
